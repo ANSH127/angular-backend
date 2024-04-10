@@ -4,17 +4,19 @@ const mongoose = require('mongoose');
 const confessionSchema = new mongoose.Schema({
     comments: {
         type: Array,
-
+        default: []
     },
     likes: {
         type: Number,
         default: 0
     },
     likedby: {
-        type: Array
+        type: Array,
+        default: []
     },
     reportedby: {
-        type: Array
+        type: Array,
+        default: []
     },
     name: {
         type: String,
