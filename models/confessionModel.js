@@ -27,6 +27,9 @@ const confessionSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now()
+    },
+    uid: {
+        type: String
     }
 
 
