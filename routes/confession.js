@@ -17,5 +17,8 @@ router.post('/addconfession', ConfessionControllers.addConfession);
 
 router.delete('/deleteconfession/:id', ConfessionControllers.deleteConfession);
 
+// fetch user  details
+router.get('/getuserdetails', ConfessionControllers.getUserDetails);
+
 
 module.exports = router;

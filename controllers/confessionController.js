@@ -1,5 +1,6 @@
 const Confession = require('../models/confessionModel');
 const mongoose = require('mongoose');
+const User = require('../models/userModel');
 // get confwssion
 
 
@@ -72,9 +73,24 @@ const deleteConfession = async (req, res) => {
     }
 }
 
+// fetch user
+
+const getUserDetails = async (req, res) => {
+    
+    try {
+        const user = await User.findById(req.user._id);
+        res.status(200).json(user);
+    }
+    catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}
+
+
 module.exports = {
     getAllConfessions,
     addConfession,
     deleteConfession,
-    getUserConfessions
+    getUserConfessions,
+    getUserDetails
 }
