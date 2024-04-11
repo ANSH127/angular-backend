@@ -1,9 +1,25 @@
 
 const mongoose = require('mongoose');
 
+
+const commentSchema = new mongoose.Schema({
+    comment: {
+        type: String,
+        required: true
+    },
+    uid: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
+});
+
 const confessionSchema = new mongoose.Schema({
     comments: {
-        type: Array,
+        type: [commentSchema],
         default: []
     },
     likes: {
