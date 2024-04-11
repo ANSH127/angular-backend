@@ -11,6 +11,8 @@ router.use(requireAuth);
 
 router.get('/confessions', ConfessionControllers.getAllConfessions);
 
+router.get('/userconfessions', ConfessionControllers.getUserConfessions);
+
 router.post('/addconfession', ConfessionControllers.addConfession);
 
 router.delete('/deleteconfession/:id', ConfessionControllers.deleteConfession);

@@ -12,6 +12,18 @@ const getAllConfessions = async (req, res) => {
     }
 }
 
+
+// get user confession
+
+const getUserConfessions = async (req, res) => {
+    try {
+        const confessions = await Confession.find({ uid: req.user._id });
+        res.status(200).json(confessions);
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
 // add confession
 
 const addConfession = async (req, res) => {
@@ -63,5 +75,6 @@ const deleteConfession = async (req, res) => {
 module.exports = {
     getAllConfessions,
     addConfession,
-    deleteConfession
+    deleteConfession,
+    getUserConfessions
 }
