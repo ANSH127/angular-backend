@@ -20,5 +20,8 @@ router.delete('/deleteconfession/:id', ConfessionControllers.deleteConfession);
 // fetch user  details
 router.get('/getuserdetails', ConfessionControllers.getUserDetails);
 
+// update user likes
+
+router.patch('/updatelikes/:id', ConfessionControllers.updateLikes);
 
 module.exports = router;

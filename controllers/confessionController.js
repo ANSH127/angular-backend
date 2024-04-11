@@ -76,7 +76,7 @@ const deleteConfession = async (req, res) => {
 // fetch user
 
 const getUserDetails = async (req, res) => {
-    
+
     try {
         const user = await User.findById(req.user._id);
         res.status(200).json(user);
@@ -87,10 +87,37 @@ const getUserDetails = async (req, res) => {
 }
 
 
+// update likes
+
+const updateLikes = async (req, res) => {
+    const id = req.params.id;
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) throw new Error("Invalid confession id");
+        const confession = await Confession.findById(id);
+        if (!confession) throw new Error("Confession not found");
+
+        if (confession.likedby.includes(req.user._id)) {
+            // remove like
+            const updatedConfession = await Confession.findByIdAndUpdate(id, { likes: confession.likes - 1, $pull: { likedby: req.user._id } }, { new: true });
+            return res.status(200).json(updatedConfession);
+
+        }
+        else {
+
+            const updatedConfession = await Confession.findByIdAndUpdate(id, { likes: confession.likes + 1, $push: { likedby: req.user._id } }, { new: true });
+            res.status(200).json(updatedConfession);
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+
 module.exports = {
     getAllConfessions,
     addConfession,
     deleteConfession,
     getUserConfessions,
-    getUserDetails
+    getUserDetails,
+    updateLikes
 }
