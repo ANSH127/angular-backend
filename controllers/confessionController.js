@@ -129,6 +129,16 @@ const addComment = async (req, res) => {
     }
 }
 
+const fetchTrendingConfessions = async (req, res) => {
+    try {
+        const confessions = await Confession.find().sort({ likes: -1 }).limit(3);
+        res.status(200).json(confessions);
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+
 module.exports = {
     getAllConfessions,
     addConfession,
@@ -136,5 +146,6 @@ module.exports = {
     getUserConfessions,
     getUserDetails,
     updateLikes,
-    addComment
+    addComment,
+    fetchTrendingConfessions
 }

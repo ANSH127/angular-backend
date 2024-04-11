@@ -28,4 +28,9 @@ router.patch('/updatelikes/:id', ConfessionControllers.updateLikes);
 
 router.patch('/addcomment/:id', ConfessionControllers.addComment);
 
+
+// fetch trending confessions
+
+router.get('/trendingconfessions', ConfessionControllers.fetchTrendingConfessions);
+
 module.exports = router;
