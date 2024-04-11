@@ -34,7 +34,7 @@ const addConfession = async (req, res) => {
         likes,
         likedby,
         reportedby,
-        createdAt,
+        createdAt: new Date(),
         uid: req.user._id
     });
     try {
