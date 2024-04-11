@@ -33,4 +33,8 @@ router.patch('/addcomment/:id', ConfessionControllers.addComment);
 
 router.get('/trendingconfessions', ConfessionControllers.fetchTrendingConfessions);
 
+// fetch all users
+
+router.get('/fetchallusers', ConfessionControllers.fetchAllUsers);
+
 module.exports = router;

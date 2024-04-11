@@ -138,6 +138,17 @@ const fetchTrendingConfessions = async (req, res) => {
     }
 }
 
+// fetch All Users
+
+const fetchAllUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
+    }
+    catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}
 
 module.exports = {
     getAllConfessions,
@@ -147,5 +158,6 @@ module.exports = {
     getUserDetails,
     updateLikes,
     addComment,
-    fetchTrendingConfessions
+    fetchTrendingConfessions,
+    fetchAllUsers
 }
