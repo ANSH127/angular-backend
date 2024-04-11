@@ -24,4 +24,8 @@ router.get('/getuserdetails', ConfessionControllers.getUserDetails);
 
 router.patch('/updatelikes/:id', ConfessionControllers.updateLikes);
 
+// add user comments
+
+router.patch('/addcomment/:id', ConfessionControllers.addComment);
+
 module.exports = router;
