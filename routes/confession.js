@@ -37,4 +37,8 @@ router.get('/trendingconfessions', ConfessionControllers.fetchTrendingConfession
 
 router.get('/fetchallusers', ConfessionControllers.fetchAllUsers);
 
+// report confession
+
+router.patch('/reportconfession/:id', ConfessionControllers.reportConfession);
+
 module.exports = router;

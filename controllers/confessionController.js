@@ -150,6 +150,36 @@ const fetchAllUsers = async (req, res) => {
     }
 }
 
+
+// report confession
+
+const reportConfession = async (req, res) => {
+    const id = req.params.id;
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) throw new Error("Invalid confession id");
+        const confession = await Confession.findById(id);
+        if (!confession) throw new Error("Confession not found");
+
+        if (confession.reportedby.includes(req.user._id)) {
+            return res.status(400).json({ message: "You have already reported this confession" });
+
+        }
+        else {
+            const updatedConfession = await Confession.findByIdAndUpdate(id, { $push: { reportedby: req.user._id } }, { new: true });
+            res.status(200).json(updatedConfession);
+        }
+
+
+
+
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+
+}
+
+
 module.exports = {
     getAllConfessions,
     addConfession,
@@ -159,5 +189,6 @@ module.exports = {
     updateLikes,
     addComment,
     fetchTrendingConfessions,
-    fetchAllUsers
+    fetchAllUsers,
+    reportConfession
 }
