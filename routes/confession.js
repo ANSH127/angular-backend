@@ -20,6 +20,10 @@ router.delete('/deleteconfession/:id', ConfessionControllers.deleteConfession);
 // fetch user  details
 router.get('/getuserdetails', ConfessionControllers.getUserDetails);
 
+// fetch user details by id
+
+router.get('/getuserdetailsbyid/:id', ConfessionControllers.getUserDetailsById);
+
 // update user likes
 
 router.patch('/updatelikes/:id', ConfessionControllers.updateLikes);

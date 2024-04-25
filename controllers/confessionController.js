@@ -86,6 +86,19 @@ const getUserDetails = async (req, res) => {
     }
 }
 
+// fetch userdetails by id
+
+const getUserDetailsById = async (req, res) => {
+    const id = req.params.id;
+    try {
+        if (!mongoose.Types.ObjectId.isValid(id)) throw new Error("Invalid user id");
+        const user = await User.findById(id);
+        if (!user) throw new Error("User not found");
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
 
 // update likes
 
@@ -190,5 +203,6 @@ module.exports = {
     addComment,
     fetchTrendingConfessions,
     fetchAllUsers,
-    reportConfession
+    reportConfession,
+    getUserDetailsById
 }
