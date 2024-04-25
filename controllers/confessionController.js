@@ -25,6 +25,19 @@ const getUserConfessions = async (req, res) => {
     }
 }
 
+// get confession by id
+
+const getConfessionById = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const confession = await Confession.find({uid: id})
+        res.status(200).json(confession.filter((confession) => confession.name !== "Anonymous"));
+    }
+    catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}
+
 // add confession
 
 const addConfession = async (req, res) => {
@@ -204,5 +217,6 @@ module.exports = {
     fetchTrendingConfessions,
     fetchAllUsers,
     reportConfession,
-    getUserDetailsById
+    getUserDetailsById,
+    getConfessionById
 }
